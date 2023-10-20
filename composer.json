@@ -1,0 +1,11 @@
+{
+    "name": "user/miniframework",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "MF\\": "vendor/MF/"
+
+        }
+    },
+    "require": {}
+}

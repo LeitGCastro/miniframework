@@ -2,17 +2,17 @@
 
 	namespace MF\Init;
 
-	abstract class Bootstrap {
+	abstract class Bootstrap extends Urls{
 
 		private $routes;
 
-		// Método que armazena e inicia as rotas na variavel '$routes'
-		abstract protected function initRoutes();
-
 		public function __construct(){
 			$this->initRoutes();
-			$this->run($this->getUrl());
+			$this->run($this->getPath());
 		}
+
+		// Método que armazena e inicia as rotas na variavel '$routes'
+		abstract protected function initRoutes();
 
 		// Método que verifica qual rota foi requirida e aponta para o controller correspondente
 		protected function run($url){
@@ -27,11 +27,6 @@
 			}
 
 			$controller->$action();
-		}
-
-		// Recupera o endereço requisitado 
-		protected function getUrl() {
-			return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 		}
 
 		public function getRoutes(){

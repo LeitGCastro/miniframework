@@ -11,19 +11,20 @@
 	*/
 	class IndexController extends Action{
 
+		protected $data;
+		protected $links;
+		protected $structure;
+		protected $broadcrumb;
+
+		// $this->broadcrumb->controller = 'Index';
+
 		public function index() {
-			$this->data->links = array(
-				'link1',
-				'link2'
-			);
-			$this->data->scripts = array(
-				'script1',
-				'script2'
-			)
+			$this->broadcrumb->page = 'Home';
+
+			$this->structure->title = 'Home';
 
 			$this->render('index', 'mainLayout');
 		}
-
 
 
 		public function about() {

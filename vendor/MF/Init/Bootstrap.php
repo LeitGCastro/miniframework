@@ -26,6 +26,12 @@
 				}
 			}
 
+			if(!isset($controller)){
+				$class = "App\\Controllers\\IndexController";
+				$controller = new $class;
+				$action = "error";
+			}
+
 			$controller->$action();
 		}
 

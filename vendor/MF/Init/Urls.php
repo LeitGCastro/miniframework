@@ -19,6 +19,8 @@
 
         // Diretório base da aplicação
         public function getDir($value=''){
-            return dirname($_SERVER["REQUEST_URI"]); 
+            // return dirname($_SERVER["REQUEST_URI"]); 
+            // return realpath(dirname(__FILE__));
+            return str_replace('\public', '', $_SERVER['DOCUMENT_ROOT']);
         }
     }

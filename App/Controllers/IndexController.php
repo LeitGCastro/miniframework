@@ -29,11 +29,15 @@
 
 		public function about() {
 
-			$this->view->data = array('nome' => 'Guilherme', 'idade' => 19);
 			$this->render('about', 'mainLayout');
-		}
+		}		
 		
-		
-	}
+		// Método base de erros
+		public function error() {
 
+			$this->structure->title = '404';
+
+			$this->render('notFound', 'clearLayout');
+		}
+	}
 ?>

@@ -24,6 +24,12 @@
 				'action' => 'about'
 			);
 
+			$routes['notFound'] = array(
+				'route' => '/404',
+				'controller' => 'indexController',
+				'action' => 'notFound'
+			);
+
 			$this->setRoutes($routes);
 		}
 

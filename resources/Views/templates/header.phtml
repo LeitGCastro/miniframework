@@ -79,7 +79,6 @@
                 <!-- End Comment -->                
                 <!-- Profile -->
                 <li class="nav-item dropdown">
-                <?php if (@$userDao->findByToken($_SESSION['token'])): ?>
                     <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="img/avatar/4.jpg" alt="user" class="profile-pic">
                     </a>
@@ -91,11 +90,9 @@
                             <li><a href="<?= $BASE_URL ?>logout_process"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </div>
-                <?php else: ?>
-                    <a class="nav-link dropdown-toggle text-muted" href="<?= $BASE_URL ?>authentication">
+                    <!-- <a class="nav-link dropdown-toggle text-muted" href="<?= $BASE_URL ?>authentication">
                         <i class="fa-solid fa-right-to-bracket"></i> <span>Login / Cadastro</span>
-                    </a>
-                <?php endif ?>
+                    </a> -->
                 </li>
             </ul> 
         </div>

@@ -17,7 +17,6 @@
 		protected $broadcrumb;
 
 		// $this->broadcrumb->controller = 'Index';
-
 		public function index() {
 			$this->broadcrumb->page = 'Home';
 
@@ -32,12 +31,5 @@
 			$this->render('about', 'mainLayout');
 		}		
 		
-		// Método base de erros
-		public function error() {
-
-			$this->structure->title = '404';
-
-			$this->render('notFound', 'clearLayout');
-		}
 	}
 ?>

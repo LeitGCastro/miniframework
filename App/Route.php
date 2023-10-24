@@ -9,7 +9,7 @@
 	 * apartir da classe Bootstrap, carregar o controller correspondente
 	*/
 	class Route extends Bootstrap {
-		
+
 		protected function initRoutes() {
 			
 			$routes['home'] = array(
@@ -23,14 +23,20 @@
 				'controller' => 'indexController',
 				'action' => 'about'
 			);
+			
+			$this->setRoutes($routes);
+		}
 
-			$routes['notFound'] = array(
+
+		protected function errorPages($url) {
+
+			$routes = array(
 				'route' => '/404',
-				'controller' => 'indexController',
+				'controller' => 'errorController',
 				'action' => 'notFound'
 			);
 
-			$this->setRoutes($routes);
+			return $routes;
 		}
 
 	}

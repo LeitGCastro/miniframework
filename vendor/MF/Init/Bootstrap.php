@@ -14,6 +14,9 @@
 		// Método que armazena e inicia as rotas na variavel '$routes'
 		abstract protected function initRoutes();
 
+		// Método para páginas de erro
+		abstract protected function errorPages($url);
+
 		// Método que verifica qual rota foi requirida e aponta para o controller correspondente
 		protected function run($url){
 			foreach ($this->getRoutes() as $key => $route) {
@@ -27,9 +30,11 @@
 			}
 
 			if(!isset($controller)){
-				$class = "App\\Controllers\\IndexController";
+				$errorRoute = $this->errorPages($url);
+				
+				$class = "App\\Controllers\\".ucfirst($errorRoute['controller']);
 				$controller = new $class;
-				$action = "error";
+				$action = $errorRoute['action'];
 			}
 
 			$controller->$action();

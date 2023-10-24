@@ -30,7 +30,7 @@
 			$currentClass = strtolower(str_replace('Controller', '',$currentClass));
 
 			// Implementa a página requisita pela aplicação
-			require_once "../resources/Views/".$currentClass."/".$this->view->page.".phtml";
+			require_once "resources/Views/".$currentClass."/".$this->view->page.".phtml";
 		}
 
 		// Método responsavel por requistar a estrutura da view (layout e conteudo)
@@ -38,8 +38,8 @@
 			$this->view->page = $view;
 			
 			// Caso não exita o layout é retornado apenas o conteudo da página
-			if(file_exists(require_once "../resources/Views/".$layout.".phtml")){
-				require_once "../resources/Views/".$layout.".phtml";
+			if(file_exists(require_once "resources/Views/".$layout.".phtml")){
+				require_once "resources/Views/".$layout.".phtml";
 			}else{
 				$this->content();
 			}

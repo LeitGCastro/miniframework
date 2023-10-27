@@ -1,25 +1,37 @@
 <?php  
-	
+
 	namespace App\Models;
 
 	/**
 	 * 
 	*/
-	class Dietas{
+	class Tickets{
 
-		public $id_user;
-		public $name;
-		public $email;
-		public $password;
-		public $image;
-		public $token;
+		public $id_ticket;
+		public $id_cliente;
+		public $id_usuario;
+		public $id_categoria;
+		public $id_status;
+		public $id_prioridade;
+		public $id_tipo_income;
+		public $id_user_transferencia;
 
+		public $dt_atendimento;
+		public $dt_vencimento;
+
+		public $protocolo;
+		public $assunto;
+		public $mensagem;
+		
+		public $string_emails_extra;
+		public $filepath;
+		public $filename;
 
 	}
 
-	interface DietaDAOInterface {
+	interface UserDAOInterface {
 
-		public function buildUser($data);
+		public function buildTicket($data);
 		public function create(User $user, $auth_user = false);
 		public function update(User $user, $redirect = true);
 		public function changePassword(User $user);
@@ -33,3 +45,6 @@
 		public function findByToken($token);
 		public function findByEmail($email);
 	}
+
+
+?>

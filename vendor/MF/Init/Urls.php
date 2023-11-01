@@ -9,7 +9,8 @@
         
         // Recupera o endereço requisitado 
         public function getPath() {
-            return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            return str_replace($this->getBaseDir(), "", $url);
         }
 
         // Endereço de pesquisa do site
@@ -17,10 +18,14 @@
             return "http://" . $_SERVER["SERVER_NAME"] . dirname($_SERVER["REQUEST_URI"]. "?") . "/";
         }
 
-        // Diretório base da aplicação
-        public function getDir($value=''){
-            // return dirname($_SERVER["REQUEST_URI"]); 
-            // return realpath(dirname(__FILE__));
-            return str_replace('\public', '', $_SERVER['DOCUMENT_ROOT']);
+        // Caminho base da aplicação desde a raiz
+        public function getScriptPath(){
+            return str_replace("/index.php", "", $_SERVER['SCRIPT_FILENAME']);
         }
+
+        // Diretório base da aplicação (index.php)
+        public function getBaseDir(){
+            return str_replace($_SERVER['DOCUMENT_ROOT'], "", $this->getScriptPath());
+        }
+
     }

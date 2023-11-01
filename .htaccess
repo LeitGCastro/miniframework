@@ -1,1 +1,8 @@
-.htaccess
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Toda navegação vai ser redirecionada para o index com parametro $url
+RewriteRule ^(.+)$ index.php?url=$1 [NC]

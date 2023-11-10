@@ -15,6 +15,9 @@
 
         // Endereço de pesquisa do site
         public function getUrl() {
+            if(isset($_SERVER["SERVER_PORT"]) && $_SERVER["SERVER_PORT"] == 8080){
+                return "http://" . $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . dirname($_SERVER["REQUEST_URI"]. "?");
+            }
             return "http://" . $_SERVER["SERVER_NAME"] . dirname($_SERVER["REQUEST_URI"]. "?") . "/";
         }
 

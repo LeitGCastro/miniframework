@@ -28,8 +28,17 @@
 
 		public function about() {
 
+			$this->structure->title = 'Sobre';
+
 			$this->render('about', 'mainLayout');
 		}		
 		
+		public function profile() {
+
+			$this->structure->title = 'Perfil';
+			$this->render('profile', 'mainLayout');
+
+		}
+
 	}
 ?>

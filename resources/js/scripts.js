@@ -1,145 +1,56 @@
-$(function() {
-    "use strict";
-    $(function() {
-            $(".preloader").fadeOut();
-        }),
+(function($) {
+  "use strict"; // Start of use strict
 
-        jQuery(document).on("click", ".mega-dropdown", function(i) {
-            i.stopPropagation();
-        });
-
-
-    var i = function() {
-        (window.innerWidth > 0 ? window.innerWidth : this.screen.width) < 3000 ? ($("body").addClass("mini-sidebar"),
-            $(".navbar-brand span").hide(), $(".scroll-sidebar, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"),
-            $(".sidebartoggler i").addClass("ti-menu")) : ($("body").removeClass("mini-sidebar"),
-            $(".navbar-brand span").show());
-        var i = (window.innerHeight > 0 ? window.innerHeight : this.screen.height) - 1;
-        (i -= 70) < 1 && (i = 1), i > 70 && $(".page-wrapper").css("min-height", i + "px");
+  // Toggle the side navigation
+  $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
+    if ($(".sidebar").hasClass("toggled")) {
+      $('.sidebar .collapse').collapse('hide');
     };
+  });
 
+  // Close any open menu accordions when window is resized below 768px
+  $(window).resize(function() {
+    if ($(window).width() < 768) {
+      $('.sidebar .collapse').collapse('hide');
+    };
+    
+    // Toggle the side navigation when window is resized below 480px
+    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+      $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
+      $('.sidebar .collapse').collapse('hide');
+    };
+  });
 
-    $(window).ready(i), $(window).on("resize", i), $(".sidebartoggler").on("click", function() {
-            $("body").hasClass("mini-sidebar") ? ($("body").trigger("resize"), $(".scroll-sidebar, .slimScrollDiv").css("overflow", "hidden").parent().css("overflow", "visible"),
-                $("body").removeClass("mini-sidebar"), $(".navbar-brand span").show()) : ($("body").trigger("resize"),
-                $(".scroll-sidebar, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"),
-                $("body").addClass("mini-sidebar"), $(".navbar-brand span").hide());
-        }),
+  // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+  $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
+    if ($(window).width() > 768) {
+      var e0 = e.originalEvent,
+        delta = e0.wheelDelta || -e0.detail;
+      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+      e.preventDefault();
+    }
+  });
 
+  // Scroll to top button appear
+  $(document).on('scroll', function() {
+    var scrollDistance = $(this).scrollTop();
+    if (scrollDistance > 100) {
+      $('.scroll-to-top').fadeIn();
+    } else {
+      $('.scroll-to-top').fadeOut();
+    }
+  });
 
+  // Smooth scrolling using jQuery easing
+  $(document).on('click', 'a.scroll-to-top', function(e) {
+    var $anchor = $(this);
+    $('html, body').stop().animate({
+      scrollTop: ($($anchor.attr('href')).offset().top)
+    }, 1000, 'easeInOutExpo');
+    e.preventDefault();
+  });
 
-        $(".fix-header .header").stick_in_parent({}), $(".nav-toggler").click(function() {
-            $("body").toggleClass("show-sidebar"), $(".nav-toggler i").toggleClass("mdi mdi-menu"),
-                $(".nav-toggler i").addClass("mdi mdi-close");
-        }),
-
-
-
-        $(".search-box a, .search-box .app-search .srh-btn").on("click", function() {
-            $(".app-search").slideToggle(200);
-        }),
-
-
-
-        $(".floating-labels .form-control").on("focus blur", function(i) {
-            $(this).parents(".form-group").toggleClass("focused", "focus" === i.type || this.value.length > 0);
-        }).trigger("blur"), $(function() {
-            for (var i = window.location, o = $("ul#sidebarnav a").filter(function() {
-                    return this.href == i;
-                }).addClass("active").parent().addClass("active");;) {
-                if (!o.is("li")) break;
-                o = o.parent().addClass("in").parent().addClass("active");
-            }
-        }),
-
-        $(function() {
-            $("#sidebarnav").metisMenu();
-        }),
-
-        $(".scroll-sidebar").slimScroll({
-            position: "left",
-            size: "5px",
-            height: "100%",
-            color: "#dcdcdc"
-        }),
-
-        $(".message-center").slimScroll({
-            position: "right",
-            size: "5px",
-            color: "#dcdcdc"
-        }),
-
-        $(".aboutscroll").slimScroll({
-            position: "right",
-            size: "5px",
-            height: "80",
-            color: "#dcdcdc"
-        }),
-
-        $(".message-scroll").slimScroll({
-            position: "right",
-            size: "5px",
-            height: "570",
-            color: "#dcdcdc"
-        }),
-
-        $(".chat-box").slimScroll({
-            position: "right",
-            size: "5px",
-            height: "470",
-            color: "#dcdcdc"
-        }),
-
-        $(".slimscrollright").slimScroll({
-            height: "100%",
-            position: "right",
-            size: "5px",
-            color: "#dcdcdc"
-        }),
-
-
-
-        $("body").trigger("resize"), $(".list-task li label").click(function() {
-            $(this).toggleClass("task-done");
-        }),
-
-
-
-        $("#to-recover").on("click", function() {
-            $("#loginform").slideUp(), $("#recoverform").fadeIn();
-        }),
-
-
-
-        $('a[data-action="collapse"]').on("click", function(i) {
-            i.preventDefault(), $(this).closest(".card").find('[data-action="collapse"] i').toggleClass("ti-minus ti-plus"),
-                $(this).closest(".card").children(".card-body").collapse("toggle");
-        }),
-
-
-
-        $('a[data-action="expand"]').on("click", function(i) {
-            i.preventDefault(), $(this).closest(".card").find('[data-action="expand"] i').toggleClass("mdi-arrow-expand mdi-arrow-compress"),
-                $(this).closest(".card").toggleClass("card-fullscreen");
-        }),
-
-
-
-        $('a[data-action="close"]').on("click", function() {
-            $(this).closest(".card").removeClass().slideUp("fast");
-        });
-});
-
-
-//Funções AJAX 
-
-$(function() {
-    // mascaras jquery
-    $('#telefone, #telefone2').mask('(00) 00000-0000');
-    $('#cep').mask('00000-000');
-    $('#cpf').mask('000.000.000-00', {reverse: true});
-    $('#cnpj').mask('00.000.000/0000-00', {reverse: true});
-});
-
- 
-
+})(jQuery); // End of use strict

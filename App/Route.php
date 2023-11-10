@@ -24,6 +24,13 @@
 				'action' => 'about'
 			);
 
+			$routes['profile'] = array(
+				'route' => '/profile',
+				'controller' => 'indexController',
+				'action' => 'profile'
+			);
+
+
 			$this->setRoutes($routes);
 		}
 

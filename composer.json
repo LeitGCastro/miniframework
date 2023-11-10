@@ -6,8 +6,5 @@
             "MF\\": "vendor/MF/"
 
         }
-    },
-    "require": {
-        "twbs/bootstrap": "^5.3"
     }
 }

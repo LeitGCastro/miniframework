@@ -20,7 +20,7 @@
 
 			$this->structure->title = '404';
 
-			$this->render('notFound', 'clearLayout');
+			$this->render('notFound', 'clear');
 		}
 	}
 ?>

@@ -22,7 +22,7 @@
 
 			$this->structure->title = 'Home';
 
-			$this->render('index', 'mainLayout');
+			$this->render('home');
 		}
 
 
@@ -30,13 +30,13 @@
 
 			$this->structure->title = 'Sobre';
 
-			$this->render('about', 'mainLayout');
+			$this->render('about');
 		}		
 		
 		public function profile() {
 
 			$this->structure->title = 'Perfil';
-			$this->render('profile', 'mainLayout');
+			$this->render('profile');
 
 		}
 

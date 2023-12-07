@@ -40,5 +40,9 @@
 
 		}
 
+		public function FunctionName($value=''){
+			// code...
+		}
+
 	}
 ?>

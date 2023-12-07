@@ -5,6 +5,7 @@
 	abstract class Bootstrap extends Urls{
 
 		private $routes;
+		private $errorRoute;
 
 		public function __construct(){
 			$this->initRoutes();
@@ -15,28 +16,22 @@
 		abstract protected function initRoutes();
 
 		// Método para páginas de erro
-		abstract protected function errorPages($url);
+		// abstract protected function errorPages();
 
 		// Método que verifica qual rota foi requirida e aponta para o controller correspondente
 		protected function run($url){
+			$class = "App\\Controllers\\".ucfirst($this->errorRoute['controller']);
+			$action = $this->errorRoute['action'];
+
 			foreach ($this->getRoutes() as $key => $route) {
 				if($url === $route['route']) {
 					$class = "App\\Controllers\\".ucfirst($route['controller']);
-					
-					$controller = new $class;
-					$action = $route['action'];
+					$action = $route['action'];					
 					break;
 				}
 			}
-
-			if(!isset($controller)){
-				$errorRoute = $this->errorPages($url);
-				
-				$class = "App\\Controllers\\".ucfirst($errorRoute['controller']);
-				$controller = new $class;
-				$action = $errorRoute['action'];
-			}
-
+			
+			$controller = new $class;
 			$controller->$action();
 		}
 
@@ -46,6 +41,10 @@
 
 		public function setRoutes(array $routes){
 			$this->routes = $routes;
+		}
+	
+		public function setErrorRoute(array $errorRoute){
+			$this->errorRoute = $errorRoute;
 		}
 	}
 

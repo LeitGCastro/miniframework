@@ -10,6 +10,7 @@
 	*/
 	class Route extends Bootstrap {
 
+
 		protected function initRoutes() {
 			
 			$routes['home'] = array(
@@ -32,19 +33,22 @@
 
 
 			$this->setRoutes($routes);
-		}
-
-
-		protected function errorPages($url) {
-
-			$routes = array(
+			$this->setErrorRoute(array(
 				'route' => '/404',
-				'controller' => 'errorController',
+				'controller' => 'ErrorController',
 				'action' => 'notFound'
-			);
-
-			return $routes;
+			));
 		}
+
+
+		
+
+		// protected function errorPages() {
+
+			
+
+		// 	return $routes;
+		// }
 
 	}
 
